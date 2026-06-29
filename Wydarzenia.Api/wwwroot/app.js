@@ -56,11 +56,18 @@ function escapeHtml(value) {
 }
 
 async function loadEvents() {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            showMessage('Nie udało się pobrać listy wydarzeń.');
+            eventsList.innerHTML = '';
+            return;
+        }
 
-    eventsList.innerHTML = data.length
-        ? data.map((item) => `
+        const data = await response.json();
+
+        eventsList.innerHTML = data.length
+            ? data.map((item) => `
             <article class="event-item">
                 <h3>${escapeHtml(item.title)}</h3>
                 <p class="meta">${escapeHtml(item.location)}</p>
@@ -71,8 +78,12 @@ async function loadEvents() {
                     <button class="button secondary" data-delete="${item.id}">Usuń</button>
                 </div>
             </article>`)
-            .join('')
-        : '<p>Brak wydarzeń do wyświetlenia.</p>';
+                .join('')
+            : '<p>Brak wydarzeń do wyświetlenia.</p>';
+    } catch {
+        showMessage('Nie udało się połączyć z API.');
+        eventsList.innerHTML = '';
+    }
 }
 
 eventsList.addEventListener('click', async (event) => {
