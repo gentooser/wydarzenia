@@ -1,2 +1,18 @@
 # wydarzenia
-repo ze szkolenia
+
+Aplikacja ASP.NET Core (frontend + Web API) do zarządzania wydarzeniami w Warszawie.
+
+## Uruchomienie
+
+```bash
+dotnet run --project /home/runner/work/wydarzenia/wydarzenia/Wydarzenia.Api/Wydarzenia.Api.csproj
+```
+
+Po uruchomieniu otwórz adres podany w konsoli (np. `https://localhost:xxxx` lub `http://localhost:xxxx`).
+
+## Funkcje
+
+- lista wydarzeń,
+- pełny CRUD przez `api/events`,
+- responsywny interfejs,
+- przełącznik trybu jasny/ciemny.
