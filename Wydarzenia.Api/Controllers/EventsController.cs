@@ -51,27 +51,38 @@ public class EventsController(EventStore eventStore) : ControllerBase
         return eventStore.Delete(id) ? NoContent() : NotFound();
     }
 
-    private static bool IsValid(EventItem item, out string message)
+private static bool IsValid(EventItem item, out string message)
+{
+    if (string.IsNullOrWhiteSpace(item.Title))
     {
-        if (string.IsNullOrWhiteSpace(item.Title))
-        {
-            message = "Tytuł wydarzenia jest wymagany.";
-            return false;
-        }
-
-        if (string.IsNullOrWhiteSpace(item.Location))
-        {
-            message = "Miejsce wydarzenia jest wymagane.";
-            return false;
-        }
-
-        if (item.EndDate < item.StartDate)
-        {
-            message = "Data zakończenia nie może być wcześniejsza od daty rozpoczęcia.";
-            return false;
-        }
-
-        message = string.Empty;
-        return true;
+        message = "Tytuł wydarzenia jest wymagany.";
+        return false;
     }
+
+    if (string.IsNullOrWhiteSpace(item.Location))
+    {
+        message = "Miejsce wydarzenia jest wymagane.";
+        return false;
+    }
+
+    if (item.StartDate == default)
+    {
+        message = "Data rozpoczęcia jest wymagana.";
+        return false;
+    }
+
+    if (item.EndDate == default)
+    {
+        message = "Data zakończenia jest wymagana.";
+        return false;
+    }
+
+    if (item.EndDate < item.StartDate)
+    {
+        message = "Data zakończenia nie może być wcześniejsza od daty rozpoczęcia.";
+        return false;
+    }
+
+    message = string.Empty;
+    return true;
 }
