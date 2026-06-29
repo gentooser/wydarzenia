@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wydarzenia w Warszawie</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1>Wydarzenia w Warszawie</h1>
+                <p>Zarządzaj wydarzeniami przez Web API</p>
+            </div>
+            <button id="themeToggle" class="button secondary" type="button">🌙 Tryb ciemny</button>
+        </header>
+
+        <main class="layout">
+            <section class="card">
+                <h2 id="formTitle">Dodaj wydarzenie</h2>
+                <form id="eventForm" class="form">
+                    <input type="hidden" id="eventId" />
+                    <label>Tytuł<input id="title" required /></label>
+                    <label>Miejsce<input id="location" required /></label>
+                    <label>Opis<textarea id="description" rows="3"></textarea></label>
+                    <label>Data rozpoczęcia<input id="startDate" type="datetime-local" required /></label>
+                    <label>Data zakończenia<input id="endDate" type="datetime-local" required /></label>
+                    <div class="actions">
+                        <button type="submit" class="button">Zapisz</button>
+                        <button type="button" id="cancelEdit" class="button secondary">Anuluj</button>
+                    </div>
+                </form>
+                <p id="message" class="message"></p>
+            </section>
+
+            <section class="card">
+                <h2>Lista wydarzeń</h2>
+                <div id="eventsList" class="events"></div>
+            </section>
+        </main>
+    </div>
+    <script src="/app.js"></script>
+</body>
+</html>
