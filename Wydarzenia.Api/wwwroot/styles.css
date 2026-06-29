@@ -1,6 +1,8 @@
 :root {
     color-scheme: light;
     --bg: #f5f7fb;
+    --bg-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Panorama_Warszawy_z_PKiN.jpg');
+    --bg-overlay: rgba(245, 247, 251, 0);
     --card: #ffffff;
     --text: #17233a;
     --muted: #5d6b82;
@@ -12,6 +14,8 @@
 :root[data-theme='dark'] {
     color-scheme: dark;
     --bg: #10151f;
+    --bg-image: url('https://upload.wikimedia.org/wikipedia/commons/0/04/Panorama_of_Warsaw_by_night.jpg');
+    --bg-overlay: rgba(16, 21, 31, 0);
     --card: #1c2433;
     --text: #edf1f8;
     --muted: #bdc8da;
@@ -27,7 +31,12 @@
 body {
     margin: 0;
     font-family: Inter, Segoe UI, Arial, sans-serif;
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--text);
 }
 
