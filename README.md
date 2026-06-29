@@ -1,0 +1,2 @@
+# wydarzenia
+repo ze szkolenia
