@@ -38,17 +38,19 @@ public class EventStore
         return item;
     }
 
-    public EventItem? Update(int id, EventItem item)
+public EventItem? Update(int id, EventItem item)
+{
+    while (_events.TryGetValue(id, out var existing))
     {
-        if (!_events.ContainsKey(id))
-        {
-            return null;
-        }
-
         item.Id = id;
-        _events[id] = item;
-        return item;
+        if (_events.TryUpdate(id, item, existing))
+        {
+            return item;
+        }
     }
+
+    return null;
+}
 
     public bool Delete(int id)
     {
