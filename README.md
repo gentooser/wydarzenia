@@ -4,9 +4,7 @@ Aplikacja ASP.NET Core (frontend + Web API) do zarządzania wydarzeniami w Warsz
 
 ## Uruchomienie
 
-```bash
-dotnet run --project /home/runner/work/wydarzenia/wydarzenia/Wydarzenia.Api/Wydarzenia.Api.csproj
-```
+    dotnet run --project Wydarzenia.Api/Wydarzenia.Api.csproj
 
 Po uruchomieniu otwórz adres podany w konsoli (np. `https://localhost:xxxx` lub `http://localhost:xxxx`).
 
